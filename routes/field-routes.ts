@@ -1,5 +1,5 @@
 import express from "express";
-import {FieldAdd, FieldDelete, FieldUpdate} from "../database/prisma-field-data-store";
+import {FieldAdd, FieldDelete, FieldGetAll, FieldUpdate} from "../database/prisma-field-data-store";
 import Field from "../model/Field";
 
 const router = express.Router();
@@ -36,6 +36,16 @@ router.put('/update/:fieldCode',async (req, res)=>{
         res.json(updatedItem);
     }catch(err){
         console.log("error updating item", err);
+    }
+})
+
+router.get('/view',async (req, res) => {
+
+    try{
+        const field_detail = await FieldGetAll();
+        res.json(field_detail);
+    }catch (error){
+        console.log("error fetching  field data",error);
     }
 })
 

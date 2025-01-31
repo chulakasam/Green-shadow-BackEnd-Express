@@ -53,3 +53,16 @@ export async function FieldUpdate(fieldCode:string,field:Field){
         console.log('error updating Field',error);
     }
 }
+
+
+
+export async function FieldGetAll(){
+    try{
+        return await prisma.field.findMany();
+
+    }catch (error){
+        console.log("error fetching data",error);
+    }
+
+
+}
