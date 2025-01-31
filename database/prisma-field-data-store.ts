@@ -34,3 +34,22 @@ export async function FieldDelete(fieldCode:string){
         console.log("error deleting field", error);
     }
 }
+
+export async function FieldUpdate(fieldCode:string,field:Field){
+    try{
+        const updatedField=await prisma.field.update({
+            where:{fieldCode:fieldCode},
+            data:{
+                fieldName:field.fieldName,
+                location:field.location,
+                fieldSize:field.fieldSize,
+                fieldImg01:field.fieldImg01,
+                fieldImg02:field.fieldImg02
+            }
+        })
+        console.log('Field updated :',updatedField);
+        return updatedField;
+    }catch (error){
+        console.log('error updating Field',error);
+    }
+}
