@@ -6,3 +6,5 @@ export default class Field{
     fieldImg01!:string;
     fieldImg02!:string;
 }
+
+

@@ -20,5 +20,17 @@ export async function FieldAdd(field:Field){
     }catch (error){
         console.log("error adding field", error);
     }
+}
 
+
+export async function FieldDelete(fieldCode:string){
+    try {
+        const deletedField=await prisma.field.delete({
+          where:{fieldCode:fieldCode}
+        });
+        console.log('Customer deleted :',fieldCode);
+        return deletedField;
+    }catch (error){
+        console.log("error deleting field", error);
+    }
 }

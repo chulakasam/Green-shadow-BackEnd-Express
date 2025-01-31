@@ -1,5 +1,5 @@
 import express from "express";
-import {FieldAdd} from "../database/prisma-field-data-store";
+import {FieldAdd, FieldDelete} from "../database/prisma-field-data-store";
 
 const router = express.Router();
 
@@ -16,6 +16,15 @@ router.post('/add',async (req, res)=>{
 
 });
 
+router.delete('/delete/:fieldCode',async (req, res)=>{
+    const fieldCode:string =req.params.fieldCode;
+    try{
+        const deletedField = await FieldDelete(fieldCode);
+        res.json(deletedField);
+    }catch (error){
+        console.log("error deleting field",error);
+    }
+})
 
 
 
