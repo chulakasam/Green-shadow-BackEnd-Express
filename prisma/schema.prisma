@@ -21,3 +21,12 @@ model Field {
   fieldImg01 String
   fieldImg02 String
 }
+
+model Vehicle {
+  LicenseNo   String @id
+  VehicleCode String @unique
+  Category    String
+  Status      String
+  FuelType    String
+  Remark      String
+}
