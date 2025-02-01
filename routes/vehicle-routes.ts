@@ -1,5 +1,5 @@
 import express from "express";
-import {DeleteVehicle, VehicleAdd} from "../database/prisma-vehicle-data-store";
+import {DeleteVehicle, GetAllVehicle, VehicleAdd} from "../database/prisma-vehicle-data-store";
 
 const router = express.Router();
 
@@ -21,9 +21,19 @@ router.delete('/delete/:LicenseNo',async (req, res) => {
     }catch (error){
         console.log('error deleting vehicle',error);
     }
+});
+
+router.get('/view',async (req,res)=>{
+    try{
+        const getAllVehicle = await GetAllVehicle();
+        res.json(getAllVehicle);
+    }catch (error){
+        console.log('error fetching data',error);
+    }
+});
 
 
-})
+
 
 
 

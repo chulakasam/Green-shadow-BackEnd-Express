@@ -34,3 +34,11 @@ export async function DeleteVehicle(LicenseNo:string){
         console.log('error deleting vehicle',error);
     }
 }
+
+export async function GetAllVehicle(){
+    try {
+        return await prisma.vehicle.findMany();
+    }catch (error){
+        console.log('error fetching data');
+    }
+}
