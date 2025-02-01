@@ -1,5 +1,6 @@
 import express from "express";
-import {DeleteVehicle, GetAllVehicle, VehicleAdd} from "../database/prisma-vehicle-data-store";
+import {DeleteVehicle, GetAllVehicle, UpdateVehicle, VehicleAdd} from "../database/prisma-vehicle-data-store";
+import Vehicle from "../model/Vehicle";
 
 const router = express.Router();
 
@@ -29,6 +30,17 @@ router.get('/view',async (req,res)=>{
         res.json(getAllVehicle);
     }catch (error){
         console.log('error fetching data',error);
+    }
+});
+
+router.put('/update/:LicenseNo',async (req, res)=>{
+    const licenseNo = req.params.LicenseNo;
+    const vehicle:Vehicle=req.body;
+    try {
+        const updateVehicle = await UpdateVehicle(licenseNo,vehicle);
+        res.json(updateVehicle);
+    }catch (error){
+        console.log('error update vehicle');
     }
 });
 

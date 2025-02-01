@@ -42,3 +42,22 @@ export async function GetAllVehicle(){
         console.log('error fetching data');
     }
 }
+
+export async function UpdateVehicle(licenseNo:string,vehicle:Vehicle){
+    try{
+        const updatedVehicle=await prisma.vehicle.update({
+            where:{LicenseNo:licenseNo},
+            data:{
+                VehicleCode:vehicle.VehicleCode,
+                Category:vehicle.Category,
+                Status:vehicle.Status,
+                FuelType:vehicle.FuelType,
+                Remark:vehicle.Remark
+            }
+        });
+        console.log('Field updated :',updatedVehicle);
+        return updatedVehicle;
+    }catch (error){
+        console.log('error updating vehicle',error);
+    }
+}
