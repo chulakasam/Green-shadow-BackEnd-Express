@@ -23,3 +23,14 @@ export async function VehicleAdd(vehicle:Vehicle) {
 }
 
 
+export async function DeleteVehicle(LicenseNo:string){
+    try {
+        const deletedVehicle=await prisma.vehicle.delete({
+            where:{LicenseNo:LicenseNo}
+        });
+        console.log('Customer deleted :',LicenseNo);
+        return deletedVehicle;
+    }catch (error){
+        console.log('error deleting vehicle',error);
+    }
+}

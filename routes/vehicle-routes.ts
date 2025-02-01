@@ -1,5 +1,5 @@
 import express from "express";
-import {VehicleAdd} from "../database/prisma-vehicle-data-store";
+import {DeleteVehicle, VehicleAdd} from "../database/prisma-vehicle-data-store";
 
 const router = express.Router();
 
@@ -13,8 +13,15 @@ router.post('/add',async (req, res)=>{
     }
 });
 
-router.delete('/delete/:LicenseNo',(req, res) => {
+router.delete('/delete/:LicenseNo',async (req, res) => {
     const licenseNo = req.params.LicenseNo;
+    try{
+        const deleteVehicle = await DeleteVehicle(licenseNo);
+        res.json(deleteVehicle);
+    }catch (error){
+        console.log('error deleting vehicle',error);
+    }
+
 
 })
 
