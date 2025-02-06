@@ -1,4 +1,5 @@
-import {MonitoringLog, PrismaClient} from "@prisma/client";
+import { PrismaClient} from "@prisma/client";
+import MonitoringLog from "../model/MonitoringLog";
 
 const prisma = new PrismaClient();
 

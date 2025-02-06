@@ -32,8 +32,8 @@ model Vehicle {
 }
 
 model MonitoringLog {
-  LogCode     String   @id
-  date        DateTime
+  LogCode     String @id
+  date        String
   observation String
   LogImage    String
 }
