@@ -20,6 +20,14 @@ export async function CropAdd(crop:Crop){
     }catch (error){
         console.log('error crop saving....')
     }
+}
 
+
+export async function CropGetAll(){
+    try {
+        return  await prisma.crop.findMany();
+    }catch (error) {
+        console.log('error fetching crop data',error);
+    }
 
 }
