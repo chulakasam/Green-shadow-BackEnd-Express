@@ -1,5 +1,5 @@
 import express from "express";
-import {MonitoringLogAdd, MonitoringLogDelete} from "../database/prisma-log-data-store";
+import {MonitoringLogAdd, MonitoringLogDelete, MonitoringLogGetAll} from "../database/prisma-log-data-store";
 
 const router = express.Router();
 
@@ -23,6 +23,20 @@ router.delete('/delete/:LogCode',async (req, res)=>{
     }
 
 });
+
+router.get('/view',async (req,res)=>{
+   try{
+       const log_details = await MonitoringLogGetAll();
+       res.json(log_details);
+   }catch(error){
+       console.log('error fetching data',error);
+   }
+});
+
+
+
+
+
 
 
 export default router;

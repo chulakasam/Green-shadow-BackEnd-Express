@@ -31,3 +31,11 @@ export async function MonitoringLogDelete(LogCode:string){
         console.log("error deleting Log", error);
     }
 }
+
+export async function MonitoringLogGetAll(){
+    try{
+        return await prisma.monitoringLog.findMany();
+    }catch (error) {
+        console.log("error fetching data",error);
+    }
+}
