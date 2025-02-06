@@ -42,3 +42,22 @@ export async function CropDelete(cropId:string){
         console.log('error deleting crop',error);
     }
 }
+
+export async function CropUpdate(cropId:string,crop:Crop){
+    try {
+        const updatedCrop=await prisma.crop.update({
+            where:{cropId:cropId},
+            data:{
+                cropName:crop.cropName,
+                cropImage:crop.cropImage,
+                category:crop.category,
+                season:crop.season,
+                fieldCode:crop.fieldCode
+            }
+        });
+        console.log('crop updated',updatedCrop);
+        return updatedCrop;
+    }catch (error){
+        console.log('error updating crop',error);
+    }
+}
