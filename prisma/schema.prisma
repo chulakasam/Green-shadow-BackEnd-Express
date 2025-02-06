@@ -30,3 +30,10 @@ model Vehicle {
   FuelType    String
   Remark      String
 }
+
+model MonitoringLog {
+  LogCode     String   @id
+  date        DateTime
+  observation String
+  LogImage    String
+}
