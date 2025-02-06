@@ -19,3 +19,15 @@ export async function MonitoringLogAdd(log:MonitoringLog) {
         console.log('error adding log',error);
     }
 }
+
+export async function MonitoringLogDelete(LogCode:string){
+    try {
+        const deletedLog=await prisma.monitoringLog.delete({
+            where:{LogCode:LogCode}
+        });
+        console.log('Log deleted :',LogCode);
+        return deletedLog;
+    }catch (error){
+        console.log("error deleting Log", error);
+    }
+}
