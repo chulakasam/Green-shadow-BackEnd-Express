@@ -20,6 +20,7 @@ model Field {
   fieldSize  Int
   fieldImg01 String
   fieldImg02 String
+  crops      Crop[]
 }
 
 model Vehicle {
@@ -36,4 +37,14 @@ model MonitoringLog {
   date        String
   observation String
   LogImage    String
+}
+
+model Crop {
+  cropId    String @id
+  cropName  String
+  cropImage String
+  category  String
+  season    String
+  fieldCode String
+  field     Field  @relation(fields: [fieldCode], references: [fieldCode], onDelete: Cascade)
 }
