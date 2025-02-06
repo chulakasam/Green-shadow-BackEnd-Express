@@ -39,3 +39,19 @@ export async function MonitoringLogGetAll(){
         console.log("error fetching data",error);
     }
 }
+export async function MonitoringLogUpdate(logCode:string,log:MonitoringLog){
+    try {
+        const updatedLog=await prisma.monitoringLog.update({
+            where:{LogCode:logCode},
+            data:{
+                date:log.date,
+                observation:log.observation,
+                LogImage:log.LogImage
+            }
+        });
+        console.log("log updated successfully",updatedLog);
+        return updatedLog;
+    }catch (error) {
+        console.log('error updating monitoring log data');
+    }
+}

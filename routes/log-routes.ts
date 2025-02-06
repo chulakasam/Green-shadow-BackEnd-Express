@@ -1,5 +1,10 @@
 import express from "express";
-import {MonitoringLogAdd, MonitoringLogDelete, MonitoringLogGetAll} from "../database/prisma-log-data-store";
+import {
+    MonitoringLogAdd,
+    MonitoringLogDelete,
+    MonitoringLogGetAll,
+    MonitoringLogUpdate
+} from "../database/prisma-log-data-store";
 
 const router = express.Router();
 
@@ -34,7 +39,17 @@ router.get('/view',async (req,res)=>{
 });
 
 
+router.put('/update/:LogCode',async (req, res)=>{
+    const logCode = req.params.LogCode;
+    const log = req.body;
+    try{
+        const updateLog = await MonitoringLogUpdate(logCode,log);
+        res.json(updateLog);
+    }catch (error){
+        console.log('error updating log',error);
+    }
 
+})
 
 
 
