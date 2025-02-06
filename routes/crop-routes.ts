@@ -1,5 +1,5 @@
 import express from "express";
-import {CropAdd, CropGetAll} from "../database/prisma-crop-data-store";
+import {CropAdd, CropDelete, CropGetAll} from "../database/prisma-crop-data-store";
 
 const router = express.Router();
 router.post('/add',async (req, res) => {
@@ -21,5 +21,17 @@ router.get('/view',async (req, res) => {
         console.log('error fetching crop details...',error);
     }
 
-})
+});
+
+router.delete('/delete/:cropId',async (req, res) => {
+    const cropId = req.params.cropId;
+
+    try {
+        const deleteCrop = await CropDelete(cropId);
+        res.json(deleteCrop);
+    }catch (error) {
+        console.log('error deleting crop details....',error);
+    }
+});
+
 export default router;

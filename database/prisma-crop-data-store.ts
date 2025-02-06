@@ -29,5 +29,16 @@ export async function CropGetAll(){
     }catch (error) {
         console.log('error fetching crop data',error);
     }
+}
 
+export async function CropDelete(cropId:string){
+    try {
+        const deletedCrop=await prisma.crop.delete({
+            where:{cropId:cropId}
+        });
+        console.log('crop deleted successfully',deletedCrop);
+        return deletedCrop;
+    }catch (error){
+        console.log('error deleting crop',error);
+    }
 }
