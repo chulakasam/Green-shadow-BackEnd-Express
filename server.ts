@@ -4,6 +4,7 @@ import vehicleRoutes from "./routes/vehicle-routes";
 import logRoutes from "./routes/log-routes";
 import cropRoutes from "./routes/crop-routes";
 import staffRoutes from "./routes/staff-routes";
+import equipmentRoutes from "./routes/equipment-routes";
 
 const app=express();
 app.use(express.json());
@@ -20,6 +21,7 @@ app.use('/vehicle',vehicleRoutes);
 app.use('/log',logRoutes);
 app.use('/crop',cropRoutes);
 app.use('/staff',staffRoutes);
+app.use('/equipment',equipmentRoutes);
 app.listen('3000',()=>{
     console.log('server running in port 3000')
 })
