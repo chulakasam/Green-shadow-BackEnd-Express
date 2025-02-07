@@ -24,12 +24,13 @@ model Field {
 }
 
 model Vehicle {
-  LicenseNo   String @id
-  VehicleCode String @unique
+  LicenseNo   String  @id
+  VehicleCode String  @unique
   Category    String
   Status      String
   FuelType    String
   Remark      String
+  staffs      Staff[]
 }
 
 model MonitoringLog {
@@ -47,4 +48,18 @@ model Crop {
   season    String
   fieldCode String
   field     Field  @relation(fields: [fieldCode], references: [fieldCode], onDelete: Cascade)
+}
+
+model Staff {
+  staffId    String  @id
+  name       String
+  position   String
+  gender     String
+  joinedDate String
+  dob        String
+  contactNo  Int
+  email      String  @unique
+  address    String
+  LicenseNo  String
+  vehicle    Vehicle @relation(fields: [LicenseNo], references: [LicenseNo], onDelete: Cascade, onUpdate: Cascade)
 }
